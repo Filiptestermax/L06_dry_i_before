@@ -1,20 +1,16 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Pulpit tests', () => {
-  const userId = 'testerLO';
-  const userPassword = '10987654';  
-  
   test.beforeEach(async ({ page }) => {
     const url = 'https://demo-bank.vercel.app/';
-    await page.goto(url);
+    const userId = 'testerLO';
+    const userPassword = '10987654';
 
+    await page.goto(url);
     await page.getByTestId('login-input').fill(userId);
     await page.getByTestId('password-input').fill(userPassword);
     await page.getByTestId('login-button').click();
   });
-
-
-
 
   test('quick payment with correct data', async ({ page }) => {
     // Arrange
@@ -37,10 +33,6 @@ test.describe('Pulpit tests', () => {
     );
   });
 
-
-
-
-  
   test('successful mobile top-up', async ({ page }) => {
     // Arrange
     const topUpReceiver = '500 xxx xxx';
